@@ -1,6 +1,5 @@
 FROM centos:7
-
-MAINTAINER "Greg Gigon @ https://github.com/greggigon"
+MAINTAINER softleader.com.tw
 
 ADD apacheds.sh /usr/local/bin/	
 RUN useradd apacheds
@@ -10,11 +9,12 @@ RUN yum -y update && yum -y install java-1.7.0-openjdk openldap-clients && curl 
 	&& ln -s /var/lib/apacheds-2.0.0_M24/default/partitions /data && chmod +x /usr/local/bin/apacheds.sh \
 	&& chown -R apacheds.apacheds /data && chown -R apacheds.apacheds /var/lib/apacheds-2.0.0_M24/default/partitions
 
-
 VOLUME /data
 VOLUME /bootstrap
 
-ENTRYPOINT /usr/local/bin/apacheds.sh
+COPY docker-compose.yml /docker-compose.yml
+
+CMD /usr/local/bin/apacheds.sh
 
 EXPOSE 10389
 EXPOSE 389
