@@ -15,7 +15,7 @@ VOLUME /bootstrap
 CMD /usr/local/bin/apacheds.sh
 
 COPY docker-compose.yml /
-COPY softleader-apacheds-1.0.0.tgz /
+COPY softleader-apacheds/ /softleader-apacheds/
 
 EXPOSE 10389
 EXPOSE 389
