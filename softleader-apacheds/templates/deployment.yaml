@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: softleader-jasmine-ldap-server
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: ldap-server
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ldap-server
+    spec:
+      nodeSelector:
+        master: "true"
+      containers:
+      - name: ldap-server
+        image: "{{ .Values.registry.hostname }}/apacheds"
+        imagePullPolicy: IfNotPresent
+        {{ if ne .Values.registry.secret "" }}
+        imagePullSecrets:
+          - name: {{ .Values.registry.secret }}
+        {{ end }}
+        resources:
+          requests:
+            cpu: 0
+          limits:
+            cpu: 2
+            memory: 768Mi
+        volumeMounts:
+        - mountPath: /data
+          name: jasmine-volume-ldap-server
+      volumes:
+      - name: jasmine-volume-ldap-server
+        hostPath:
+          path: "{{ .Values.volume.ldapServer }}"
+          type: Directory

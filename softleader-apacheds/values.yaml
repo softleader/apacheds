@@ -1,0 +1,10 @@
+registry:
+  secret: softleader-hub
+  hostname: hub.softleader.com.tw
+  
+volume:
+  ldapServer: /ldap-server
+
+service:
+  ldapServer:
+    nodePort: 30389
