@@ -1,8 +1,7 @@
 [DEPRECATED] Apache DS in a Docker Container
+===============================
 
 > Please consider using [OpenLDAP](https://github.com/softleader/openldap)
-
-===============================
 
 Apache DS is a Java implementation of Directory server (**LDAP**). This projects puts it into container and makes it easier to configure and bootstrap it with some data.
 
