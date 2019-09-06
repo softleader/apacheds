@@ -16,6 +16,7 @@ CMD /usr/local/bin/apacheds.sh
 
 COPY docker-compose.yml /
 COPY softleader-apacheds/ /softleader-apacheds/
+COPY 20-nproc.conf /etc/security/limits.d/20-nproc.conf
 
 EXPOSE 10389
 EXPOSE 389
